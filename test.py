@@ -203,8 +203,48 @@ def run_speed_test():
         time_builtin.append(result)
     return time_builtin, time_builtin_2
 
-print(run_speed_test())
+# print(run_speed_test())
 
 
-merge_sort_inplace(array)
-print(array)
+# merge_sort_inplace(array)
+# print(array)
+
+class User():
+    def __init__(self, username):
+        self.username = username
+users_array = []
+names = ["keith", "lexuan", "beb", "loves you", "anna", "banana", "Anna", "charle", "213skd", "zack", "zcsa"]
+for name in names:
+    users_array.append(User(name))
+
+def merge_sort_users(arr, byfunc=None):
+    size = len(arr)
+    if size == 1:
+        return arr
+    size = size//2
+    return merge_users(arr, merge_sort_users(arr[:size], byfunc), merge_sort_users(arr[size:], byfunc), byfunc)
+
+def merge_users(arr, left, right, byfunc):
+    end_left, end_right = len(left), len(right)
+    l_index = r_index = main_index = 0
+    while l_index < end_left and r_index < end_right:
+        if byfunc(left[l_index]).lower() > byfunc(right[r_index]).lower():
+            arr[main_index] = right[r_index]
+            r_index += 1
+        else:
+            arr[main_index] = left[l_index]
+            l_index += 1
+        main_index +=1
+    while l_index < end_left:
+        arr[main_index] = left[l_index]
+        l_index += 1
+        main_index += 1 
+    while r_index < end_right:
+        arr[main_index] = right[r_index]
+        r_index += 1
+        main_index += 1
+    
+    return arr
+
+merge_sort_users(users_array, lambda x: x.username)
+print([user.username for user in users_array])
