@@ -246,5 +246,5 @@ def merge_users(arr, left, right, byfunc):
     
     return arr
 
-merge_sort_users(users_array, lambda x: x.username)
-print([user.username for user in users_array])
+# merge_sort_users(users_array, lambda x: x.username)
+# print([user.username for user in users_array])
